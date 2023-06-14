@@ -7,13 +7,13 @@ const { getNumOfRightAnswers } = require('../helper_functions/quizMarker');
 
 
 admin.initializeApp({
-  apiKey: "AIzaSyDrcB0RrBSaQn5-2mbYmGyS5zlzkc9slps",
-  authDomain: "quizwhiz-72df8.firebaseapp.com",
-  databaseURL: "https://quizwhiz-72df8-default-rtdb.firebaseio.com",
-  projectId: "quizwhiz-72df8",
-  storageBucket: "quizwhiz-72df8.appspot.com",
-  messagingSenderId: "412874254362",
-  appId: "1:412874254362:web:9c8128380ab932112b89a3"
+  apiKey: "AIzaSyAgdMUvhQG7nwFmtDXmixnAvxywNn5ITJM",
+  authDomain: "quizwhiz-fc853.firebaseapp.com",
+  projectId: "quizwhiz-fc853",
+  storageBucket: "quizwhiz-fc853.appspot.com",
+  messagingSenderId: "544661130883",
+  appId: "1:544661130883:web:241bf2b75acfe0a5ee15b6",
+  measurementId: "G-J34S6PEB1R"
 });
 
 const db = admin.firestore();
