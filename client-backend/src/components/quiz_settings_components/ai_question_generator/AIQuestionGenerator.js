@@ -12,10 +12,11 @@ import { v4 } from "uuid";
 import './AIQuestionGenerator.css';
 const { Configuration, OpenAIApi } = require("openai");
 
-const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_OPENAI_APIKEY,
+const OpenAI = require('openai');
+
+const openai = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_APIKEY, // defaults to process.env["OPENAI_API_KEY"]
 });
-const openai = new OpenAIApi(configuration);
 
 
 const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
@@ -38,10 +39,10 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
 
         let completion;
         try {
-            completion = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: prompt,
-                max_tokens: 500,
+            const chatCompletion = await openai.chat.completions.create({
+                messages: [{ role: 'user', content: prompt }],
+                model: 'text-davinci-003',
+                max_tokens: 500
             });
         } catch (error) {
             console.log('openAI API ran into an error')
