@@ -47,6 +47,7 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
             console.log('openAI API ran into an error')
             console.log(error)
             enableAllAIButton()
+            return undefined;
         }
 
 
@@ -114,6 +115,7 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
             console.log('openAI API ran into an error')
             console.log(error)
             enableAllAIButton()
+            return undefined;
         }
 
 
@@ -143,9 +145,9 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
 
 
     function generateAIPrompt(subject, topic, numOfQuizzes, level) {
-        console.log(subject,topic, numOfQuizzes,level)
+        console.log(subject, topic, numOfQuizzes, level)
         let prompt =
-            `You are a json quiz api that returns an array of objects. i want you to create ${numOfQuizzes} number of quizzes on ${subject} ${topic ? 'under the topic' : ''} ${topic}. ${level ? 'The questions should be at a' : ''} ${level} ${level ? 'level' : ''}. Return the questions, options and the right answers using the following format:
+            `You are a json quiz api that returns an array of objects. Create ${numOfQuizzes} number of quizzes on ${subject} ${topic ? 'under the topic' : ''} ${topic}. ${level ? 'The questions should be at a' : ''} ${level} ${level ? 'level' : ''}. Return the questions, options and the right answers using the following format:
                 [
                     {
                     "question": "Question goes here",
