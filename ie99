@@ -1,0 +1,259 @@
+[33mcommit 159de5803d4910ec5fda9c93d8e5c8c5ad00dff5[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Mon Sep 25 21:51:46 2023 +0100
+
+    new openai api
+
+[33mcommit 00b506481bc7757e57b31addb03a56f69e37d590[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Fri Sep 22 21:59:06 2023 +0100
+
+    moved to another firebase project setup
+
+[33mcommit 6ab9d9af25533e8ba80ed882e32e9202e5dc69bc[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Wed Jun 14 13:36:28 2023 +0100
+
+    migrated the frontend and backend hosting
+
+[33mcommit 31283bbee175a710554ff02df5903c0dc297474f[m
+Author: Bolexzy <boluoyewumi79@gmail.com>
+Date:   Tue Jun 13 20:41:23 2023 +0100
+
+    Add feature: clean and improve quizwhiz
+
+[33mcommit 7be0257f4024e38ab55612fcb9ec34a00b33f44c[m
+Author: Bolexzy <boluoyewumi79@gmail.com>
+Date:   Tue Jun 13 20:26:50 2023 +0100
+
+    Add feature: clean and improve quizwhiz
+
+[33mcommit 3c967c9085e792a85897000b3b41bae8ea764e46[m
+Author: Bolexzy <boluoyewumi79@gmail.com>
+Date:   Mon Jun 12 19:52:53 2023 +0100
+
+    Add feature: improved quiz settings page
+
+[33mcommit f80e45f5022bc1119f6035809785ac089fc2e567[m
+Author: Bolexzy <boluoyewumi79@gmail.com>
+Date:   Mon Jun 12 15:13:55 2023 +0100
+
+    Add feature: improved dashboard- home page
+
+[33mcommit 4602f4bddd77d9265f9907c93eca99f4ada3be29[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Fri Jun 9 14:02:14 2023 +0100
+
+    updatede the cache time for certain endpoints
+
+[33mcommit 441eca2560bc35bece23001fc336d05b1d6fa6c2[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Fri Jun 9 10:22:34 2023 +0100
+
+    changed site description
+
+[33mcommit c0f5acc2977c2fb6a132d50ce9e45c785598f3f5[m
+Author: Bolexzy <boluoyewumi79@gmail.com>
+Date:   Wed Jun 7 05:09:19 2023 +0100
+
+    Add feature: improved landing page and features
+
+[33mcommit caf15c4da1a067e35d82536c7a653c7062d3bd41[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Mon Jun 5 15:16:38 2023 +0100
+
+    refactored the code
+
+[33mcommit ed0a9bd7a66b6c0770f8b53697d9e4047824d8bb[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Fri Jun 2 00:25:22 2023 +0100
+
+    added a littlebit of responsiveness to some of my pages
+
+[33mcommit ae6274838dec3320d8ad9e7ef96f4de5298f8c4e[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Thu Jun 1 14:30:27 2023 +0100
+
+    improved the responsiveness of the design
+
+[33mcommit 1a9a93202295cee8097d1925f5d0edb49427e104[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Thu Jun 1 13:41:40 2023 +0100
+
+    added more security checking to the routes, and added the ability to see public quiz results
+
+[33mcommit c2d84dc07571a0080add4b9c5ae926727586f390[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Thu Jun 1 03:56:14 2023 +0100
+
+    removed some files from git tracking
+
+[33mcommit 234fc350ed76abee7567da4c3ee4f417db936079[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Thu Jun 1 03:43:46 2023 +0100
+
+    added a few respinsiveness and style improvements
+
+[33mcommit 323cd22ab4f59112dc9b02900ddcf62c93791599[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Wed May 31 18:05:49 2023 +0100
+
+    implemented github signin and
+
+[33mcommit 84ba276b51cf9444212b36ba970e9bbf7a3e9df6[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Wed May 31 15:42:28 2023 +0100
+
+    added the ability to make quiz puplic
+
+[33mcommit 472ec69fcc0700ee020b8c484f888fa2985029e9[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Wed May 31 03:55:34 2023 +0100
+
+    added the ability to sort quiz results by name, time and score
+
+[33mcommit 6aa8188684a672abe720bf72bc0f35aba66a6f82[m
+Merge: fd1085b 75aeec3
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Tue May 30 18:54:00 2023 +0100
+
+    Merge branch 'main' of https://github.com/Bolexzy/QUIZWHIZ
+
+[33mcommit fd1085b21b0c840039f96bef874b7c625851a3d9[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Tue May 30 18:53:30 2023 +0100
+
+    added the ability for a user to take quize and update the database with the result
+
+[33mcommit 75aeec305df2fb5db0712dabf421114ab658804a[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Tue May 30 16:00:14 2023 +0100
+
+    update
+
+[33mcommit 4c496452060e3b9ddb29bc99b96f0988129f09ed[m
+Merge: 0e54842 970da69
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Tue May 30 15:26:50 2023 +0100
+
+    Merge branch 'main' of https://github.com/Bolexzy/QUIZWHIZ
+
+[33mcommit 0e54842f72601731904f8affc6e0bdf56207f7f9[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Tue May 30 15:26:42 2023 +0100
+
+    update
+
+[33mcommit 970da6952fd536ce36d2d10dab6cd83317992d26[m
+Merge: 47f95f5 be052fc
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Tue May 30 09:46:13 2023 +0100
+
+    Merge branch 'main' of https://github.com/Bolexzy/QUIZWHIZ
+
+[33mcommit 47f95f5b0f065803900630daf95274fecb0cc77f[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Tue May 30 09:45:51 2023 +0100
+
+    added ability to create, update and delete questions.
+    
+    Modified the Home page(backend) to show a list of all created questions for a user
+
+[33mcommit be052fc1121c46abb57660787abb67d04b76a7fe[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Tue May 30 07:55:52 2023 +0100
+
+    update google auth
+
+[33mcommit 0ed51c122500724e23b63db84ef8527b7c8ecf61[m
+Merge: ade9bf2 3d14c54
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Tue May 30 07:25:13 2023 +0100
+
+    Merge branch 'main' of https://github.com/Bolexzy/QUIZWHIZ
+
+[33mcommit ade9bf237980936f8e5621f83239b456b3b49cd2[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Tue May 30 07:25:06 2023 +0100
+
+    update google auth
+
+[33mcommit 3d14c54907d9e8d621bce603c0a1a4a228446663[m
+Merge: 827d2e6 859dd9f
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Mon May 29 20:25:42 2023 +0100
+
+    Merge branch 'main' of https://github.com/Bolexzy/QUIZWHIZ
+
+[33mcommit 827d2e6b95a1c4bf74f3f78d0f0bf50ab5e19fbd[m
+Author: Stanley Ezechukwu <stanley6453@gmail.com>
+Date:   Mon May 29 20:25:27 2023 +0100
+
+    added the ability to load existing quiz for the quizsetting page
+
+[33mcommit 859dd9fd71585d84e8e0954e07a86421e6d16372[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Mon May 29 19:06:41 2023 +0100
+
+    update google auth
+
+[33mcommit 5e25dfeed749bc7cd34fce23c1639424533e3602[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Mon May 29 07:18:08 2023 +0100
+
+    update
+
+[33mcommit aca6b35bfdcf294ed0480db8a855ad75fe84e9f9[m
+Merge: 33cdc1e b74c61a
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Mon May 29 06:48:37 2023 +0100
+
+    update
+
+[33mcommit 33cdc1e6a01c0dafb957bfc81231bf06e0c7a26b[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Mon May 29 06:47:58 2023 +0100
+
+    update
+
+[33mcommit b74c61a7c758d4980f118277ff27b158d59ea1b4[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Mon May 29 06:26:38 2023 +0100
+
+    update
+
+[33mcommit db2977197924a407a7893964eb07ad056b0d07ff[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Mon May 29 05:17:22 2023 +0100
+
+    update
+
+[33mcommit 41b8e66346b6ca44a0bd5f4cdbd6fbc8b628c395[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Mon May 29 05:11:19 2023 +0100
+
+    update
+
+[33mcommit 063e2602929cea02f083ad00ed912125a293f604[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Mon May 29 04:51:58 2023 +0100
+
+    update
+
+[33mcommit 09c2b081b6f8f2f16f357d0188e7870a573e2786[m
+Author: Ononiwu Wisdom <ononiwuwisdom2@gmail.com>
+Date:   Mon May 29 04:22:32 2023 +0100
+
+    update
+
+[33mcommit fc504d0cafa2fc124de67f779d3efa4168819337[m
+Merge: 746cf35 94aa245
+Author: Oyewumi Boluwatife Emmanuel <74738413+Bolexzy@users.noreply.github.com>
+Date:   Mon May 29 00:11:08 2023 +0100
+
+    Merge pull request #2 from Bolexzy/bolexzy_features
+    
+    Add feature: improve quiz taking page added more style and functionality
+
+[33mcommit 94aa2458964e914d19b705afd28ed352b27ba0a2[m
+Author: Bolexzy <boluoyewumi79@
