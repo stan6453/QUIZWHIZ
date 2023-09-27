@@ -8,9 +8,9 @@ const openai = new OpenAI({
 
 async function queryOpenAi() {
     try {
-
         const chatCompletion = await openai.chat.completions.create({
-            messages: [{role:'system', content: process.argv[2] }],
+            messages: [{ role: 'system', content: process.argv[2] }],
+
             model: 'gpt-3.5-turbo',
         });
 
