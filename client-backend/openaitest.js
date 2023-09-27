@@ -1,25 +1,35 @@
-const OpenAI = require('openai');
+const { Configuration, OpenAIApi } = require("openai");
 
-const openai = new OpenAI({
-    apiKey: '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', // defaults to process.env["OPENAI_API_KEY"]
+const configuration = new Configuration({
+    apiKey: "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",
 });
+const openai = new OpenAIApi(configuration);
 
 
 
 async function queryOpenAi() {
+    let completion;
+    console.log(process.argv[2])
     try {
-        const chatCompletion = await openai.chat.completions.create({
-            messages: [{ role: 'system', content: process.argv[2] }],
-
-            model: 'gpt-3.5-turbo',
+         completion = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: process.argv[2],
+            max_tokens: 64,
         });
 
-        console.log(chatCompletion.choices);
+        console.log(completion.data);
     }
     catch (e) {
         console.log(e)
         console.log(e.message)
         console.log(e.data)
+        console.log()
+        console.log()
+        console.log()
+        console.log(completion)
+
+
+
     }
 }
 

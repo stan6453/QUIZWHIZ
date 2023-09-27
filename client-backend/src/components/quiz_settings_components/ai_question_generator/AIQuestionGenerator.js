@@ -12,11 +12,10 @@ import { v4 } from "uuid";
 import './AIQuestionGenerator.css';
 const { Configuration, OpenAIApi } = require("openai");
 
-const OpenAI = require('openai');
-
-const openai = new OpenAI({
-    apiKey: process.env.REACT_APP_OPENAI_APIKEY, // defaults to process.env["OPENAI_API_KEY"]
+const configuration = new Configuration({
+    apiKey: process.env.REACT_APP_OPENAI_APIKEY,
 });
+const openai = new OpenAIApi(configuration);
 
 
 const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
@@ -39,10 +38,10 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
 
         let completion;
         try {
-            const chatCompletion = await openai.chat.completions.create({
-                messages: [{ role: 'user', content: prompt }],
-                model: 'text-davinci-003',
-                max_tokens: 500
+            completion = await openai.createCompletion({
+                model: "text-davinci-003",
+                prompt: prompt,
+                max_tokens: 500,
             });
         } catch (error) {
             console.log('openAI API ran into an error')
@@ -52,7 +51,6 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
 
 
         const AIdata = completion.data.choices[0].text;
-        console.log(AIdata)
         try {
             let questionObject = JSON.parse(AIdata)
             addOIdToQuestionObject(questionObject);
@@ -145,8 +143,9 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
 
 
     function generateAIPrompt(subject, topic, numOfQuizzes, level) {
+        console.log(subject,topic, numOfQuizzes,level)
         let prompt =
-            `You are a json quiz api that returns an array of objects. i want you to create ${numOfQuizzes} quizzes on ${subject} ${topic ? 'under the topic' : ''} ${topic}. ${level ? 'The questions should be at a' : ''} ${level} ${level ? 'level' : ''}. Return the questions, options and the right answers using the following format:
+            `You are a json quiz api that returns an array of objects. i want you to create ${numOfQuizzes} number of quizzes on ${subject} ${topic ? 'under the topic' : ''} ${topic}. ${level ? 'The questions should be at a' : ''} ${level} ${level ? 'level' : ''}. Return the questions, options and the right answers using the following format:
                 [
                     {
                     "question": "Question goes here",
