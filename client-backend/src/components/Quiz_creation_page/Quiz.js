@@ -74,9 +74,9 @@ const Quiz = () => {
             pull_func={pull_data}
           />
           <div className="container-btn">
-            <button class="button_plus" onClick={handleAddQuestions}>
+            <button className="button_plus" onClick={handleAddQuestions}>
               <i
-                class="fa-solid fa-circle-plus fa-xl"
+                className="fa-solid fa-circle-plus fa-xl"
                 style={{ color: '#000000' }}
               ></i>
             </button>

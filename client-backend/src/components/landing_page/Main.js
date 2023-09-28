@@ -78,7 +78,7 @@ const Main = () => {
             Features
           </h2>
           <div
-            class="d-flex flex-column flex-sm-row -mx-sm-2"
+            className="d-flex flex-column flex-sm-row -mx-sm-2"
             style={{ animation: 'fadeIn 5s' }}
           >
             <Feature />

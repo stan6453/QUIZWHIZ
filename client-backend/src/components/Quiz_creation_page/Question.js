@@ -56,9 +56,9 @@ const Question = ({ question, handleQuestionChange, pull_func }) => {
             options={options}
             handleOptionChange={handleOptionChange}
           />
-          <button class="button-plus" onClick={handleAddOption}>
+          <button className="button-plus" onClick={handleAddOption}>
             <i
-              class="fa-solid fa-circle-plus fa-xl"
+              className="fa-solid fa-circle-plus fa-xl"
               style={{ color: '#000000' }}
             ></i>
           </button>

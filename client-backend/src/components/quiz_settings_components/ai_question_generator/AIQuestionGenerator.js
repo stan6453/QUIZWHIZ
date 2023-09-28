@@ -10,12 +10,13 @@ import {
 } from '@chakra-ui/react'
 import { v4 } from "uuid";
 import './AIQuestionGenerator.css';
-const { Configuration, OpenAIApi } = require("openai");
+import validateAndFixQuizStructure from './verify_quiz_structure';
+import OpenAI from 'openai';
 
-const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_OPENAI_APIKEY,
+const openai = new OpenAI({
+    apiKey: process.env.REACT_APP_OPENAI_APIKEY, // defaults to process.env["OPENAI_API_KEY"]
+    dangerouslyAllowBrowser: true
 });
-const openai = new OpenAIApi(configuration);
 
 
 const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
@@ -33,15 +34,14 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
         disableAllAIButton();
         e.preventDefault();
 
-
-        let prompt = AIGenerateSingleQuestion(question);
-
-        let completion;
+        let chatCompletion;
         try {
-            completion = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: prompt,
-                max_tokens: 500,
+            chatCompletion = await openai.chat.completions.create({
+                messages: [
+                    { role: 'system', content: generateSingleQuestionSystemRole() },
+                    { role: 'user', content: generateSingleQuestionAIPrompt(question) }
+                ],
+                model: 'gpt-3.5-turbo',
             });
         } catch (error) {
             console.log('openAI API ran into an error')
@@ -51,13 +51,12 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
         }
 
 
-        const AIdata = completion.data.choices[0].text;
+        const AIdata = chatCompletion.choices[0].message.content;
         try {
             let questionObject = JSON.parse(AIdata)
+            questionObject = validateAndFixQuizStructure(questionObject);
             addOIdToQuestionObject(questionObject);
             appendQuestionToQuiz(questionObject);
-
-            console.log(questionObject)
             enableAllAIButton()
         } catch (error) {
             enableAllAIButton()
@@ -70,21 +69,26 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
         setQuestion('');
     };
 
-    function AIGenerateSingleQuestion(question) {
-        let prompt =
-            `You are a json quiz api that returns only one object. create a quiz on this question: ${question}. Return the options together with the right answer using this format:
+    function generateSingleQuestionAIPrompt(question) {
+        let prompt = question;
+        return prompt;
+    }
+
+
+
+    function generateSingleQuestionSystemRole() {
+        return `You are a json quiz api that returns only one object. Return the options together with the right answer using this format:
         {
-            "question": "${question}",
+            "question": "the question",
             "options": {
             "A": "option 1",
             "B": "option 2",
             "C": "option 3",
             "D": "option 4"
             },
-            "answer": [an array of the right answers]
+            "answer": [an array of the right answers options out of options "A","B","C","D". Don't put "option 1", "option 2", "option 3", "option 4" here]
         }
         do not add any text or explanation at the beginning or end of the json object. just return only the json object.`;
-        return prompt;
     }
 
     function disableAllAIButton() {
@@ -103,14 +107,17 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
         disableAllAIButton();
         e.preventDefault();
 
-        const prompt = generateAIPrompt(subject, topic, numOfQuizzes, level);
-        let completion;
+        let chatCompletion;
         try {
-            completion = await openai.createCompletion({
-                model: "text-davinci-003",
-                prompt: prompt,
-                max_tokens: 500,
+            chatCompletion = await openai.chat.completions.create({
+                messages: [
+                    { role: 'system', content: generateMultipleQuestionSystemRole() },
+                    { role: 'user', content: generateMultipleQuestionAIPrompt(subject, topic, numOfQuizzes, level) }
+                ],
+                model: 'gpt-3.5-turbo',
             });
+
+            console.log(chatCompletion.choices[0].message.content);
         } catch (error) {
             console.log('openAI API ran into an error')
             console.log(error)
@@ -119,10 +126,12 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
         }
 
 
-        const AIdata = completion.data.choices[0].text;
-
+        const AIdata = chatCompletion.choices[0].message.content;
         try {
             let questionArray = JSON.parse(AIdata)
+            for (let i = 0; i < questionArray.length; i++) {
+                questionArray[i] = validateAndFixQuizStructure(questionArray[i]);
+            }
             addIdToQuestions(questionArray);
             extendQuizArray(questionArray);
             enableAllAIButton()
@@ -144,34 +153,29 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
 
 
 
-    function generateAIPrompt(subject, topic, numOfQuizzes, level) {
+    function generateMultipleQuestionAIPrompt(subject, topic, numOfQuizzes, level) {
         console.log(subject, topic, numOfQuizzes, level)
         let prompt =
-            `You are a json quiz api that returns an array of objects. Create ${numOfQuizzes} number of quizzes on ${subject} ${topic ? 'under the topic' : ''} ${topic}. ${level ? 'The questions should be at a' : ''} ${level} ${level ? 'level' : ''}. Return the questions, options and the right answers using the following format:
-                [
-                    {
-                    "question": "Question goes here",
-                    "options": {
-                    "A": "option 1",
-                    "B": "option 2",
-                    "C": "option 3",
-                    "D": "option 4"
-                    },
-                    "answer": [an array of the right answers]
-                },
-                {
-                    "question": "Question goes here",
-                    "options": {
-                    "A": "option 1",
-                    "B": "option 2",
-                    "C": "option 3",
-                    "D": "option 4"
-                    },
-                    "answer": [an array of the right answers]
-                }
-            ]
-            do not add any text or explanation at the beginning or end of the json array. just return only the json array.`;
+            `Create ${numOfQuizzes} ${numOfQuizzes > 1 ? 'quizzes' : 'quiz'} on ${subject} ${topic ? 'under the topic' : ''} ${topic}. ${level ? 'The questions should be at a' : ''} ${level} ${level ? 'level' : ''}.`;
         return prompt;
+    }
+
+
+
+    function generateMultipleQuestionSystemRole() {
+        return `You are a json quiz api that returns an array of quiz objects.
+        Return the quiz objects, options and the right answers in the array using the following format:
+            '{
+            "question": "Question goes here",
+            "options": {
+            "A": "option 1",
+            "B": "option 2",
+            "C": "option 3",
+            "D": "option 4"
+            },
+            "answer": [an array of the right answers]
+            }'
+        do not add any text or explanation at the beginning or end of the json array. just return only the json array.`;
     }
 
     return (
