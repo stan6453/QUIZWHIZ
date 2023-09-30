@@ -1,20 +1,36 @@
-function validateAndFixQuizStructure(quizObject) {
+function correctDefectsInQuizObject(quizObject) {
     let newQuizObject = { ...quizObject };
-    //validate answers
-    let options = quizObject.options;
-    let answers = quizObject.answer;
-
-    let optionKeys = new Set(Object.keys(options));
-    answers = new Set(answers);
-
-    //TODO: handle when answers has a longer length than options
-
-    if (!isSuperSet(optionKeys, answers)) {
-        newQuizObject = fixOptionValueUsedAsAnswer(newQuizObject);
-    }
+    newQuizObject = correctDefectsInAnswerArray(newQuizObject)
     return newQuizObject
 }
 
+function correctDefectsInAnswerArray(quizObject) {
+    let optionKeys = new Set(Object.keys(quizObject.options));
+    let answers = new Set(quizObject.answer);
+    if (!isSuperSet(optionKeys, answers)) {
+        //TODO: handle when answers has a longer length than options
+
+        quizObject = fixOptionValueUsedAsAnswer(quizObject);
+
+        //TODO: Remove duplicates from answer array
+    }
+    return quizObject
+}
+
+function fixOptionValueUsedAsAnswer(quizObject) {
+    let optionKeys = Object.keys(quizObject.options);
+    let optionValues = Object.values(quizObject.options);
+    for (const answer of quizObject.answer) {
+        if (answerIsOptionValue(optionKeys, optionValues, answer)) {
+            let correctOptionKey = getObjectKeyByValue(quizObject.options, answer);
+            // remove deformed answer from answer array
+            var newAnswerArray = quizObject.answer.filter(function (goodAnswer) { return goodAnswer !== answer })
+            newAnswerArray.push(correctOptionKey);
+            quizObject.answer = [...new Set(newAnswerArray)];
+        }
+    }
+    return quizObject;
+}
 
 // helper functions
 function isSuperSet(parentSet, childSet) {
@@ -26,23 +42,12 @@ function isSuperSet(parentSet, childSet) {
     return true;
 }
 
-function fixOptionValueUsedAsAnswer(quizObject) {
-    let optionKeys = Object.keys(quizObject.options);
-    let optionValues = Object.values(quizObject.options);
-    for (const answer of quizObject.answer) {
-        if (optionValues.includes(answer) && !optionKeys.includes(answer)) {
-            let rightOptionKey = getObjectKeyByValue(quizObject.options, answer)
-            // remove answer from answer array
-            var newAnswerArray = quizObject.answer.filter(function (e) { return e !== answer })
-            newAnswerArray.push(rightOptionKey);
-            quizObject.answer = [...new Set(newAnswerArray)];
-        }
-    }
-    return quizObject;
+function answerIsOptionValue(optionKeys, optionValues, answer) {
+    return (optionValues.includes(answer) && !optionKeys.includes(answer));
 }
 
 function getObjectKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
 }
 
-export default validateAndFixQuizStructure;
+export default correctDefectsInQuizObject;

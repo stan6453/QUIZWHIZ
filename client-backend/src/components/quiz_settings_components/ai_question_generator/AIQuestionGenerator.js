@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { v4 } from "uuid";
 import './AIQuestionGenerator.css';
-import validateAndFixQuizStructure from './verify_quiz_structure';
+import correctDefectsInQuizObject from './verify_quiz_structure';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
@@ -54,7 +54,7 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
         const AIdata = chatCompletion.choices[0].message.content;
         try {
             let questionObject = JSON.parse(AIdata)
-            questionObject = validateAndFixQuizStructure(questionObject);
+            questionObject = correctDefectsInQuizObject(questionObject);
             addOIdToQuestionObject(questionObject);
             appendQuestionToQuiz(questionObject);
             enableAllAIButton()
@@ -130,7 +130,7 @@ const AIQuestionGenerator = ({ extendQuizArray, appendQuestionToQuiz }) => {
         try {
             let questionArray = JSON.parse(AIdata)
             for (let i = 0; i < questionArray.length; i++) {
-                questionArray[i] = validateAndFixQuizStructure(questionArray[i]);
+                questionArray[i] = correctDefectsInQuizObject(questionArray[i]);
             }
             addIdToQuestions(questionArray);
             extendQuizArray(questionArray);
