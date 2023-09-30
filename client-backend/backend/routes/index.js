@@ -3,7 +3,7 @@ var router = express.Router();
 
 const admin = require("firebase-admin");
 
-const { getNumOfRightAnswers } = require('../helper_functions/quizMarker');
+const { markQuiz } = require('../helper_functions/quizMarker');
 
 
 admin.initializeApp({
@@ -183,7 +183,7 @@ router.post('/submit/:quizId', async function (req, res) {
   let doc = await docRef.get()
   const serverQuiz = doc.data()
 
-  numOfRightAnswers = getNumOfRightAnswers(serverQuiz.questions, req.body.questions)
+  numOfRightAnswers = markQuiz(serverQuiz.questions, req.body.questions)
 
   const testResult = {
     quiz_id: serverQuiz.test_id,
